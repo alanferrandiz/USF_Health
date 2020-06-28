@@ -3,17 +3,19 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="styles.css">
   <script type="text/javascript" src="autocomplete.js"></script>
+  <script type="text/javascript" src="JsBarcode.all.min.js"></script>
+  <script type="text/javascript" src="print.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
 <div class="navbar">
-  <div class="usf_logo_div"><a href="#"><img class="usf_logo" src="usf_logo.jpg"></a></div>
+  <div class="usf_logo_div"><a href="index.html"><img class="usf_logo" src="usf_logo.jpg"></a></div>
   <div class="subnav">
     <button class="subnavbtn">Persons&nbsp;&nbsp;<i class="fa fa-caret-down"></i></button>
     <div class="subnav-content">
       <div class="first_option"><a></a></div>
-      <div class="option"><a href="#">Barcode printing</a></div>
+      <div class="option"><a href="persons_barcode_printing.html">Barcode printing</a></div>
       <div class="option"><a href="#">Barcode reading</a></div>
       <div class="option"><a href="#">Results</a></div>
       <div class="option"><a href="#">Individuals</a></div>
@@ -47,27 +49,35 @@
 <div class="div_breadcrumb">
   Persons&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;Barcode printing
 </div>
+
+
 <div class="div_form">
 
-  <div class="div_autocomplete">
-    <input id="cboIndividual" type="text" name="cboIndividual" placeholder="Select invidual to whom sample is taken">
-  </div>
-  <div class="div_text">
-    Select when the sample is taken
-  </div> 
-  <div class="div_sampledate">
-    <input type="date" value="2020-07-01" id="datSampleDate" name="datSampleDate" min="2020-07-01" max="2022-12-31"> 
-  </div>
-
-  <div class="div_button">
-    <input id="btnPrintBarcode" type="submit" name="btnPrintBarcode" value="Print barcode" onclick="alert('Hola')">
-  </div>
+    <div class="div_autocomplete">
+      <input id="cboIndividual" type="text" name="cboIndividual" placeholder="Select invidual to whom sample is taken">
+    </div>
+    <div class="div_text">
+      Select when the sample is taken
+    </div> 
+    <div class="div_sampledate">
+      <input type="date" value="" id="datSampleDate" name="datSampleDate" min="2020-07-01" max="2022-12-31"> 
+    </div>
+    <div class="div_button">
+      <input id="btnPrintBarcode" type="submit" name="btnPrintBarcode" value="Print barcode" onclick="JsBarcode('#svgBarcode', document.getElementById('ItemSelected').value, {format: 'code39', text: document.getElementById('cboIndividual').value + ' | ' + document.getElementById('datSampleDate').value,fontSize:12, height: 60 });printJS('svgBarcode', 'html');">
+    </div>
 
 </div>
 
+<input type='hidden' id="ItemSelected" value="">
+
+<div class="div_barcode" hidden='true'>
+    <svg id="svgBarcode"></svg>
+</div>
+
+
 <script>
-  autocomplete(document.getElementById("cboIndividual"), countries);
+  autocomplete(document.getElementById("cboIndividual"), document.getElementById("ItemSelected"), countries, 'A');
 </script>
-  
+
 </body>
 </html>

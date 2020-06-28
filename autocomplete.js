@@ -4,7 +4,7 @@ var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla"
 arr = countries;
 
 
-function autocomplete(inp, arr) {
+function autocomplete(inp, sel, arr, prefix) {
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
   var currentFocus;
@@ -35,7 +35,8 @@ function autocomplete(inp, arr) {
           /*execute a function when someone clicks on the item value (DIV element):*/
           b.addEventListener("click", function(e) {
               /*insert the value for the autocomplete text field:*/
-              inp.value = this.getElementsByTagName("input")[0].value;
+              sel.value =  prefix +  String(10000000 + arr.indexOf(this.getElementsByTagName("input")[0].value)).substr(1);
+              inp.value = this.getElementsByTagName("input")[0].value + " | " + sel.value + "" 
               /*close the list of autocompleted values,
               (or any other open lists of autocompleted values:*/
               closeAllLists();

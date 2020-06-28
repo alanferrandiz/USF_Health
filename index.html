@@ -8,12 +8,12 @@
 
 <body>
 <div class="navbar">
-  <div class="usf_logo_div"><a href="#"><img class="usf_logo" src="usf_logo.jpg"></a></div>
+  <div class="usf_logo_div"><a href="index.html"><img class="usf_logo" src="usf_logo.jpg"></a></div>
   <div class="subnav">
     <button class="subnavbtn">Persons&nbsp;&nbsp;<i class="fa fa-caret-down"></i></button>
     <div class="subnav-content">
       <div class="first_option"><a></a></div>
-      <div class="option"><a href="#">Barcode printing</a></div>
+      <div class="option"><a href="persons_barcode_printing.html">Barcode printing</a></div>
       <div class="option"><a href="#">Barcode reading</a></div>
       <div class="option"><a href="#">Results</a></div>
       <div class="option"><a href="#">Individuals</a></div>
@@ -44,30 +44,6 @@
 <div class="verticalbar">
 </div>
 
-<div class="div_breadcrumb">
-  Persons&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;Barcode printing
-</div>
-<div class="div_form">
-
-  <div class="div_autocomplete">
-    <input id="cboIndividual" type="text" name="cboIndividual" placeholder="Select invidual to whom sample is taken">
-  </div>
-  <div class="div_text">
-    Select when the sample is taken
-  </div> 
-  <div class="div_sampledate">
-    <input type="date" value="2020-07-01" id="datSampleDate" name="datSampleDate" min="2020-07-01" max="2022-12-31"> 
-  </div>
-
-  <div class="div_button">
-    <input id="btnPrintBarcode" type="submit" name="btnPrintBarcode" value="Print barcode" onclick="alert('Hola')">
-  </div>
-
-</div>
-
-<script>
-  autocomplete(document.getElementById("cboIndividual"), countries);
-</script>
   
 </body>
 </html>

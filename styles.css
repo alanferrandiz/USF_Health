@@ -139,7 +139,12 @@ body {
   left:100px;
   width: 400px;
   position: relative;
-  padding-top: 40px;
+  padding-top: 30px;
+}
+
+.div_barcode {
+  left:100px;
+  position: relative;
 }
 
 .div_text {
@@ -197,6 +202,8 @@ input[type="submit"] {
   left:100px;
   width: 275px;
   height: 35px;
+  background-color: #47525E;
+  color: #FFFFFF;
 }
 
 .autocomplete-items {
@@ -226,4 +233,17 @@ input[type="submit"] {
   background-color:#e9e9e9 !important; 
   font-size: 14px;
   z-index: 999;
+}
+
+@media print and (width: 5cm) and (height: 5cm) {
+  @page {
+     margin: 0cm;
+     size: 2in 1in;   
+     @top-left {
+      content: "Hamlet";
+    }
+    @top-right {
+      content: "Page " counter(page);
+    }
+  }
 }
