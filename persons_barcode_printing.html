@@ -16,7 +16,7 @@
     <div class="subnav-content">
       <div class="first_option"><a></a></div>
       <div class="option"><a href="persons_barcode_printing.html">Barcode printing</a></div>
-      <div class="option"><a href="#">Barcode reading</a></div>
+      <div class="option"><a href="persons_barcode_reading.html">Barcode reading</a></div>
       <div class="option"><a href="#">Results</a></div>
       <div class="option"><a href="#">Individuals</a></div>
       <div class="option"><a href="#">Pools</a></div>
@@ -32,7 +32,6 @@
       <div class="option"><a href="#">Results</a></div>
       <div class="option"><a href="#">Locations</a></div>
       <div class="option"><a href="#">Units</a></div>
-      <div class="option"><a href="#">Surfaces</a></div>
       <div class="option"><a href="#">Samples</a></div>
     </div>
   </div>
@@ -50,12 +49,12 @@
   Persons&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;Barcode printing
 </div>
 
-
 <div class="div_form">
 
     <div class="div_autocomplete">
-      <input id="cboIndividual" type="text" name="cboIndividual" placeholder="Select invidual to whom sample is taken">
+      <input id="cboIndividual" type="text" name="cboIndividual" placeholder="Select invidual to whom sample is taken" autofocus>
     </div>
+    
     <div class="div_text">
       Select when the sample is taken
     </div> 
@@ -63,20 +62,19 @@
       <input type="date" value="" id="datSampleDate" name="datSampleDate" min="2020-07-01" max="2022-12-31"> 
     </div>
     <div class="div_button">
-      <input id="btnPrintBarcode" type="submit" name="btnPrintBarcode" value="Print barcode" onclick="JsBarcode('#svgBarcode', document.getElementById('ItemSelected').value, {format: 'code39', text: document.getElementById('cboIndividual').value + ' | ' + document.getElementById('datSampleDate').value,fontSize:12, height: 60 });printJS('svgBarcode', 'html');">
+      <input id="btnPrintBarcode" type="submit" name="btnPrintBarcode" value="Print barcode" onclick="JsBarcode('#svgBarcode', document.getElementById('ItemSelected').value, {format: 'code39', text: document.getElementById('cboIndividual').value.substring(0, 30) + ' | ' + document.getElementById('datSampleDate').value,fontSize:10,height:60,width:1.25});printJS('svgBarcode', 'html');">
     </div>
 
 </div>
 
-<input type='hidden' id="ItemSelected" value="">
+<input type='hidden' id="ItemSelected" value="" hidden='true'>
 
-<div class="div_barcode" hidden='true'>
+<div class="div_barcode">
     <svg id="svgBarcode"></svg>
 </div>
 
-
 <script>
-  autocomplete(document.getElementById("cboIndividual"), document.getElementById("ItemSelected"), countries, 'A');
+  autocomplete(document.getElementById("cboIndividual"), document.getElementById("ItemSelected"), 1, 'A');
 </script>
 
 </body>
