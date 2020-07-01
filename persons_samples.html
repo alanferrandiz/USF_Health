@@ -12,7 +12,7 @@
 
   <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
-  <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-alpine.css">
+  <link rel="stylesheet" href="ag-theme-alpine.css">
 
 </head>
 
@@ -57,27 +57,26 @@
   Persons&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;Samples
 </div>
 
-<div class="div_samples_pools" id="div_samples_pools">
-  <div id="myGrid" style="width:1200px; height: 600px" class="ag-theme-alpine"></div>
-</div>
+
+  <div id="myGrid" style="width:1200px; height: 500px" class="ag-theme-alpine"></div>
+
 
   <script type="text/javascript" charset="utf-8">
     // specify the columns
 
     var columnDefs = [
     {headerName: "Sample Id", field: "sample_id", sortable: true, filter: true, editable:false, width:140 },
-    {headerName: "Individual Name", field: "individual_name", sortable: true, filter: true, editable:true, width:200 },
+    {headerName: "Individual Name", field: "individual_name", sortable: true, filter: true, editable:true, width:250 },
     {headerName: "Sample Date", field: "sample_date", sortable: true, filter: true, editable:true, width:140  },
-    {headerName: "Sample Details", field: "sample_details", sortable: true, filter: true, editable:true, width:300 },
+    {headerName: "Sample Details", field: "sample_details", sortable: true, filter: true, editable:true, width:350 },
     {headerName: "Pool Id", field: "pool_id", sortable: true, filter: true, editable:true, width:140 },
-    {headerName: "Well", field: "well_id", sortable: true, filter: true, editable:true, width:140, cellStyle: {'background-color': 'lightgray'} }
+    {headerName: "Well Id", field: "well_id", sortable: true, filter: true, editable:true, width:140, cellStyle: {'background-color': 'lightgray'} }
     ];
 
     // let the grid know which columns to use
     var gridOptions = {
       columnDefs: columnDefs
     };
-
 
   // lookup the container we want the Grid to use
   var eGridDiv = document.querySelector('#myGrid');
@@ -88,7 +87,6 @@
   agGrid.simpleHttpRequest({url: 'https://raw.githubusercontent.com/alanferrandiz/USF_Health/master/PersonsRowData.json'}).then(function(data) {
       gridOptions.api.setRowData(data);
   });
-
 
   </script>
 
