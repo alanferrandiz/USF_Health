@@ -147,14 +147,16 @@
     "sample_id": "A0000019",
     "individual_name": "Jamaica",
     "sample_date": "2020-07-04",
-    "pool_id": "Collected with some problems",
-    "sample_pool": "P4"
+    "sample_details": "Collected with no problems",
+    "pool_id": "P4",
+    "well_id": ""
   },
   {
     "sample_id": "A0000020",
     "individual_name": "Honduras",
     "sample_date": "2020-07-04",
-    "pool_id": "Collected with no problems",
-    "sample_pool": "P4"
+    "sample_details": "Collected with no problems",
+    "pool_id": "P4",
+    "well_id": ""
   }
 ]

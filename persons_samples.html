@@ -6,6 +6,14 @@
   <script type="text/javascript" src="JsBarcode.all.min.js"></script>
   <script type="text/javascript" src="print.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.js"></script>
+  <script src="datagrid.js"></script>
+
+  <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+  <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-alpine.css">
+
 </head>
 
 <body>
@@ -18,9 +26,9 @@
       <div class="option"><a href="persons_barcode_printing.html">Barcode printing</a></div>
       <div class="option"><a href="persons_barcode_reading.html">Barcode reading</a></div>
       <div class="option"><a href="persons_samples.html">Samples</a></div>
+      <div class="option"><a href="#">Results</a></div>
       <div class="option"><a href="#">Individuals</a></div>
       <div class="option"><a href="#">Pools</a></div>
-      <div class="option"><a href="#">Samples</a></div>
     </div>
   </div>
   <div class="subnav">
@@ -46,43 +54,44 @@
 </div>
 
 <div class="div_breadcrumb">
-  Persons&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;Barcode reading
+  Persons&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;Samples
 </div>
 
-<div class="div_form">
-
-  <div class="div_input">
-    <input id="txtBarcode" type="input" name="txtBarcode" placeholder="Enter sample barcode" onkeypress="retrieveInvidualData(event,document.getElementById('txtBarcode'),document.getElementById('txtIndividual'));" autofocus>
-  </div>
-
-  
-  <div class="div_input">
-    <input id="txtIndividual" type="input" name="txtIndividual" placeholder="Select individual to whom sample is taken" disabled>
-  </div>
-
-  <div class="div_autocomplete">
-    <input id="cboPool" type="text" name="cboPool" placeholder="Select the pool for the sample (From 1 to 10)">
-  </div>
-
-  <div class="div_textArea">
-    <textarea id="txtDetails" name="txtDetails" rows="4" cols="36" placeholder="Enter details for the sample"></textarea>
-  </div>
-
-  <div class="div_button">
-    <input id="btnSaveBarcode" type="submit" name="btnSaveBarcode" value="Save barcode">
-  </div>
-
+<div class="div_samples_pools" id="div_samples_pools">
+  <div id="myGrid" style="width:1200px; height: 600px" class="ag-theme-alpine"></div>
 </div>
 
-<input type='hidden' id="ItemSelected" value="" hidden='true'>
+  <script type="text/javascript" charset="utf-8">
+    // specify the columns
 
-<div class="div_barcode">
-  <svg id="svgBarcode"></svg>
-</div>
+    var columnDefs = [
+    {headerName: "Sample Id", field: "sample_id", sortable: true, filter: true, editable:false, width:140 },
+    {headerName: "Individual Name", field: "individual_name", sortable: true, filter: true, editable:true, width:200 },
+    {headerName: "Sample Date", field: "sample_date", sortable: true, filter: true, editable:true, width:140  },
+    {headerName: "Sample Details", field: "sample_details", sortable: true, filter: true, editable:true, width:300 },
+    {headerName: "Pool Id", field: "pool_id", sortable: true, filter: true, editable:true, width:140 },
+    {headerName: "Well", field: "well_id", sortable: true, filter: true, editable:true, width:140, cellStyle: {'background-color': 'lightgray'} }
+    ];
 
-<script>
-autocomplete(document.getElementById("cboPool"), document.getElementById("ItemSelected"), 2, '');
-</script>
+    // let the grid know which columns to use
+    var gridOptions = {
+      columnDefs: columnDefs
+    };
+
+
+  // lookup the container we want the Grid to use
+  var eGridDiv = document.querySelector('#myGrid');
+
+  // create the grid passing in the div to use together with the columns & data we want to use
+  new agGrid.Grid(eGridDiv, gridOptions);
+
+  agGrid.simpleHttpRequest({url: 'https://raw.githubusercontent.com/alanferrandiz/USF_Health/master/PersonsRowData.json'}).then(function(data) {
+      gridOptions.api.setRowData(data);
+  });
+
+
+  </script>
 
 </body>
+
 </html>
