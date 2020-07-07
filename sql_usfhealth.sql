@@ -56,7 +56,7 @@ an individual category id (player, coach, assistant, etc).
 */
 create table tb_individuals
 (
-		ind_id				int not null,		/*identifier number for tb_individuals*/
+		ind_id				int not null	identity,		/*identifier number for tb_individuals*/
 		ind_first_name		varchar(800),		/*first name for the individual*/
 		ind_last_name		varchar(800),		/*last name for the individual*/
 		ind_email			varchar(800),		/*email address for the individual*/
